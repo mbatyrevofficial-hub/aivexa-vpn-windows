@@ -1,0 +1,42 @@
+name: Aivexa VPN Windows
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - master
+
+permissions:
+  contents: write
+  actions: read
+
+jobs:
+  build:
+    uses: ./.github/workflows/build.yml
+    with:
+      target: windows
+      project: ./v2rayN/v2rayN.csproj
+
+  package:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Restore build (x64)
+      uses: actions/download-artifact@v8
+      with:
+        name: x64
+        path: v2rayN-windows-64
+
+    # ядра Xray/sing-box берём из готового набора; папка внутри архива как у оригинала — так работает автообновление
+    - name: Add cores and pack
+      run: |
+        wget -nv -O AivexaVPN-windows-64.zip "https://github.com/2dust/v2rayN-core-bin/raw/refs/heads/master/v2rayN-windows-64.zip"
+        7z a -tZip AivexaVPN-windows-64.zip v2rayN-windows-64 -mx5
+        ls -la AivexaVPN-windows-64.zip
+
+    - name: Upload
+      uses: actions/upload-artifact@v7
+      with:
+        name: AivexaVPN-windows-64
+        path: AivexaVPN-windows-64.zip
+        if-no-files-found: error
