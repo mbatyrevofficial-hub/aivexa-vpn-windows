@@ -107,9 +107,7 @@ public static class ConfigHandler
 
         if (config.UiItem.CurrentLanguage.IsNullOrEmpty())
         {
-            config.UiItem.CurrentLanguage = Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName.Equals("zh", StringComparison.CurrentCultureIgnoreCase)
-                ? Global.Languages.First()
-                : Global.Languages[2];
+            config.UiItem.CurrentLanguage = "ru";
         }
 
         config.ConstItem ??= new ConstItem();
@@ -162,7 +160,7 @@ public static class ConfigHandler
         };
         config.ClashUIItem ??= new();
         config.ClashUIItem.ConnectionsColumnItem ??= [];
-        config.SystemProxyItem ??= new();
+        config.SystemProxyItem ??= new() { SysProxyType = ESysProxyType.ForcedChange };
         config.WebDavItem ??= new();
         config.CheckUpdateItem ??= new();
         config.Fragment4RayItem ??= new()
@@ -2657,7 +2655,7 @@ public static class ConfigHandler
         //Bypass the mainland
         var item2 = new RoutingItem()
         {
-            Remarks = $"{ver}绕过大陆(Whitelist)",
+            Remarks = $"{ver}Обход Китая (Whitelist)",
             Url = string.Empty,
             Sort = maxSort + 1,
         };
@@ -2666,7 +2664,7 @@ public static class ConfigHandler
         //Blacklist
         var item3 = new RoutingItem()
         {
-            Remarks = $"{ver}黑名单(Blacklist)",
+            Remarks = $"{ver}Блок-лист (Blacklist)",
             Url = string.Empty,
             Sort = maxSort + 2,
         };
@@ -2675,7 +2673,7 @@ public static class ConfigHandler
         //Global
         var item1 = new RoutingItem()
         {
-            Remarks = $"{ver}全局(Global)",
+            Remarks = $"{ver}Весь трафик через VPN (Global)",
             Url = string.Empty,
             Sort = maxSort + 3,
         };
@@ -2683,7 +2681,7 @@ public static class ConfigHandler
 
         if (!blImportAdvancedRules)
         {
-            await SetDefaultRouting(config, item2);
+            await SetDefaultRouting(config, item1);
         }
         return 0;
     }
