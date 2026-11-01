@@ -1,4 +1,4 @@
-using System.Data;
+﻿using System.Data;
 
 namespace ServiceLib.Handler;
 
@@ -47,7 +47,7 @@ public static class ConfigHandler
             InItem inItem = new()
             {
                 Protocol = nameof(EInboundProtocol.socks),
-                LocalPort = 10808,
+                LocalPort = 10818,
                 UdpEnabled = true,
                 SniffingEnabled = true,
                 RouteOnly = false,
@@ -1487,23 +1487,23 @@ public static class ConfigHandler
 
     private static readonly Dictionary<string, string> PolicyGroupRegionFilters = new()
     {
-        { "JP", "日本|\\b[Jj][Pp]\\b|🇯🇵|[Jj]apan" },
-        { "US", "美国|\\b[Uu][Ss]\\b|🇺🇸|[Uu]nited [Ss]tates|\\b[Uu][Ss][Aa]\\b" },
-        { "HK", "香港|\\b[Hh][Kk]\\b|🇭🇰|[Hh]ong ?[Kk]ong" },
-        { "TW", "台湾|台灣|\\b[Tt][Ww]\\b|🇹🇼|[Tt]aiwan" },
-        { "KR", "韩国|\\b[Kk][Rr]\\b|🇰🇷|[Kk]orea" },
-        { "SG", "新加坡|\\b[Ss][Gg]\\b|🇸🇬|[Ss]ingapore" },
-        { "DE", "德国|\\b[Dd][Ee]\\b|🇩🇪|[Gg]ermany" },
-        { "FR", "法国|\\b[Ff][Rr]\\b|🇫🇷|[Ff]rance" },
-        { "GB", "英国|\\b[Gg][Bb]\\b|🇬🇧|[Uu]nited [Kk]ingdom|[Bb]ritain" },
-        { "CA", "加拿大|🇨🇦|[Cc]anada" },
-        { "AU", "澳大利亚|\\b[Aa][Uu]\\b|🇦🇺|[Aa]ustralia" },
-        { "RU", "俄罗斯|\\b[Rr][Uu]\\b|🇷🇺|[Rr]ussia" },
-        { "BR", "巴西|\\b[Bb][Rr]\\b|🇧🇷|[Bb]razil" },
-        { "IN", "印度|🇮🇳|[Ii]ndia" },
-        { "VN", "越南|\\b[Vv][Nn]\\b|🇻🇳|[Vv]ietnam" },
-        { "ID", "印度尼西亚|\\b[Ii][Dd]\\b|🇮🇩|[Ii]ndonesia" },
-        { "MX", "墨西哥|\\b[Mm][Xx]\\b|🇲🇽|[Mm]exico" }
+        { "JP", "ж—Ґжњ¬|\\b[Jj][Pp]\\b|рџ‡Їрџ‡µ|[Jj]apan" },
+        { "US", "зѕЋе›Ѕ|\\b[Uu][Ss]\\b|рџ‡єрџ‡ё|[Uu]nited [Ss]tates|\\b[Uu][Ss][Aa]\\b" },
+        { "HK", "й¦™жёЇ|\\b[Hh][Kk]\\b|рџ‡­рџ‡°|[Hh]ong ?[Kk]ong" },
+        { "TW", "еЏ°ж№ѕ|еЏ°зЃЈ|\\b[Tt][Ww]\\b|рџ‡№рџ‡ј|[Tt]aiwan" },
+        { "KR", "йџ©е›Ѕ|\\b[Kk][Rr]\\b|рџ‡°рџ‡·|[Kk]orea" },
+        { "SG", "ж–°еЉ еќЎ|\\b[Ss][Gg]\\b|рџ‡ёрџ‡¬|[Ss]ingapore" },
+        { "DE", "еѕ·е›Ѕ|\\b[Dd][Ee]\\b|рџ‡©рџ‡Є|[Gg]ermany" },
+        { "FR", "жі•е›Ѕ|\\b[Ff][Rr]\\b|рџ‡«рџ‡·|[Ff]rance" },
+        { "GB", "и‹±е›Ѕ|\\b[Gg][Bb]\\b|рџ‡¬рџ‡§|[Uu]nited [Kk]ingdom|[Bb]ritain" },
+        { "CA", "еЉ ж‹їе¤§|рџ‡Ёрџ‡¦|[Cc]anada" },
+        { "AU", "жѕіе¤§е€©дєљ|\\b[Aa][Uu]\\b|рџ‡¦рџ‡є|[Aa]ustralia" },
+        { "RU", "дї„зЅ—ж–Ї|\\b[Rr][Uu]\\b|рџ‡·рџ‡є|[Rr]ussia" },
+        { "BR", "е·ґиҐї|\\b[Bb][Rr]\\b|рџ‡§рџ‡·|[Bb]razil" },
+        { "IN", "еЌ°еє¦|рџ‡®рџ‡і|[Ii]ndia" },
+        { "VN", "и¶ЉеЌ—|\\b[Vv][Nn]\\b|рџ‡»рџ‡і|[Vv]ietnam" },
+        { "ID", "еЌ°еє¦е°јиҐїдєљ|\\b[Ii][Dd]\\b|рџ‡®рџ‡©|[Ii]ndonesia" },
+        { "MX", "еўЁиҐїе“Ґ|\\b[Mm][Xx]\\b|рџ‡Ірџ‡Ѕ|[Mm]exico" }
     };
 
     public static async Task<RetResult> AddGroupRegionServer(Config config, SubItem? subItem)
@@ -2655,7 +2655,7 @@ public static class ConfigHandler
         //Bypass the mainland
         var item2 = new RoutingItem()
         {
-            Remarks = $"{ver}Обход Китая (Whitelist)",
+            Remarks = $"{ver}РћР±С…РѕРґ РљРёС‚Р°СЏ (Whitelist)",
             Url = string.Empty,
             Sort = maxSort + 1,
         };
@@ -2664,7 +2664,7 @@ public static class ConfigHandler
         //Blacklist
         var item3 = new RoutingItem()
         {
-            Remarks = $"{ver}Блок-лист (Blacklist)",
+            Remarks = $"{ver}Р‘Р»РѕРє-Р»РёСЃС‚ (Blacklist)",
             Url = string.Empty,
             Sort = maxSort + 2,
         };
@@ -2673,7 +2673,7 @@ public static class ConfigHandler
         //Global
         var item1 = new RoutingItem()
         {
-            Remarks = $"{ver}Весь трафик через VPN (Global)",
+            Remarks = $"{ver}Р’РµСЃСЊ С‚СЂР°С„РёРє С‡РµСЂРµР· VPN (Global)",
             Url = string.Empty,
             Sort = maxSort + 3,
         };
